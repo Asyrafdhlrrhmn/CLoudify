@@ -1,21 +1,31 @@
 <?php
-class koneksi {
+class Koneksi {
 
     private $host;
     private $user;
     private $password;
     private $dbname;
+    private $port;
 
     public $conn;
 
     public function __construct() {
 
-        $this->host     = getenv('DB_HOST');
-        $this->user     = getenv('DB_USER');
-        $this->password = getenv('DB_PASS');
-        $this->dbname   = getenv('DB_NAME');
+        // Gunakan variabel dari Railway
+        $this->host     = getenv('MYSQLHOST');
+        $this->user     = getenv('MYSQLUSER');
+        $this->password = getenv('MYSQLPASSWORD');
+        $this->dbname   = getenv('MYSQLDATABASE');
+        $this->port     = getenv('MYSQLPORT');
 
-        $this->conn = new mysqli($this->host, $this->user, $this->password, $this->dbname);
+        // Koneksi dengan port wajib
+        $this->conn = new mysqli(
+            $this->host,
+            $this->user,
+            $this->password,
+            $this->dbname,
+            $this->port
+        );
 
         if ($this->conn->connect_error) {
             die('Koneksi gagal: ' . $this->conn->connect_error);
@@ -29,5 +39,5 @@ class koneksi {
     }
 }
 
-$koneksi = new koneksi();
+$koneksi = new Koneksi();
 ?>
