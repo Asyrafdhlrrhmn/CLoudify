@@ -27,8 +27,10 @@ RUN a2enmod rewrite
 # --- START OF FIX: Menonaktifkan MPM Berlebih ---
 # Image 'php:*-apache' menggunakan mpm_prefork secara default.
 # Nonaktifkan mpm_event dan mpm_worker untuk menghindari galat "More than one MPM loaded".
-RUN a2dismod mpm_event && \
-    a2dismod mpm_worker
+# RUN a2dismod mpm_event && \
+#     a2dismod mpm_worker
+RUN a2dismod mpm_event || true && \
+    a2dismod mpm_worker || true
 # --- END OF FIX ---
 
 # Copy app
