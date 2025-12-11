@@ -1,0 +1,29 @@
+# Jangan ikutkan folder konfigurasi server
+apache2/
+apache/
+config/
+conf/
+etc/
+
+# Jangan ikutkan file konfigurasi apache
+*.conf
+*.cnf
+*.ini
+
+# Ignore .htaccess (kadang mengaktifkan MPM atau fitur yang tidak kompatibel)
+.htaccess
+
+# Folder system dari OS
+.DS_Store
+Thumbs.db
+
+# Folder Git
+.git
+.gitignore
+
+# Folder IDE
+.vscode/
+.idea/
+
+# Composer vendor (boleh dihapus jika kamu tidak pakai composer)
+vendor/
